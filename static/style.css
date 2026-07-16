@@ -1,0 +1,334 @@
+@font-face {
+  font-family: "Instrument Serif";
+  src: url("InstrumentSerif-Regular.ttf") format("truetype");
+  font-weight: 400; font-style: normal;
+}
+@font-face {
+  font-family: "Instrument Serif";
+  src: url("InstrumentSerif-Italic.ttf") format("truetype");
+  font-weight: 400; font-style: italic;
+}
+@font-face {
+  font-family: "Instrument Sans";
+  src: url("InstrumentSans-Regular.ttf") format("truetype");
+  font-weight: 400; font-style: normal;
+}
+@font-face {
+  font-family: "Instrument Sans";
+  src: url("InstrumentSans-Bold.ttf") format("truetype");
+  font-weight: 700; font-style: normal;
+}
+
+/* Manrope — the technical voice: numbers, labels, chips, meta.
+   Loaded from Google Fonts; the geometric precision is what gives the
+   data an "instrument panel" register against the humanist Instrument Sans.
+   If offline, it falls back cleanly to Instrument Sans (see --mono below). */
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700&display=swap");
+
+:root {
+  /* Warm red-leaning espresso */
+  --espresso: #2B1616;
+  --espresso-deep: #1C0E0E;
+  --espresso-line: #3D2020;   /* hairline rule on light surfaces */
+
+  --cream: #F5EFE4;
+  --cream-sunk: #EFE7D8;      /* recessed fields (textarea) */
+  --card: #FFFDF9;            /* cards sit a touch brighter than the page */
+
+  --ink: #2B1616;
+  --ink-soft: rgba(43,22,22,0.60);
+  --ink-faint: rgba(43,22,22,0.42);
+
+  --sky: #7FC4E4;            /* accent — ONLY ever on espresso surfaces */
+  --rule: rgba(43,22,22,0.14);
+
+  /* Strike severity — functional, deliberately outside the brand palette */
+  --strike1-bg: #E7E4DC; --strike1-fg: #57544C;
+  --strike2-bg: #F1D7A6; --strike2-fg: #7A4E10;
+  --strike3-bg: #EEBFB6; --strike3-fg: #8C2A1E;
+
+  --approved: #3D7A4E;
+
+  --sans: "Instrument Sans", sans-serif;
+  --mono: "Manrope", "Instrument Sans", sans-serif;
+  --serif: "Instrument Serif", serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 15.5px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- Nameplate: the one dark espresso + sky moment (kept, warmed) ---- */
+.nameplate {
+  background: var(--espresso);
+  padding: 34px 32px;
+  border-bottom: 1px solid var(--espresso-deep);
+}
+.nameplate-inner {
+  max-width: 940px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+.wordmark {
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+.tally-logo {
+  height: 46px;
+  width: auto;
+  display: block;
+}
+.upload-zone {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+.upload-status {
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.01em;
+  color: var(--sky);
+  opacity: 0.92;
+}
+.upload-btn {
+  background: var(--espresso-deep);
+  color: var(--sky);
+  border: 1px solid rgba(127,196,228,0.38);
+  padding: 8px 17px;
+  border-radius: 7px;
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+.upload-btn:hover { background: #170d06; border-color: rgba(127,196,228,0.6); }
+
+/* ---- Body: light, crisp, editorial ---- */
+main {
+  max-width: 940px;
+  margin: 0 auto;
+  padding: 40px 32px 64px;
+}
+
+/* Section eyebrow above the queue — structural, sets the editorial tone */
+.queue-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  border-bottom: 1.5px solid var(--espresso);
+  padding-bottom: 10px;
+  margin-bottom: 22px;
+}
+.queue-title {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 400;
+  margin: 0;
+  color: var(--ink);
+}
+.queue-count {
+  font-family: var(--mono);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.empty-state {
+  text-align: center;
+  color: var(--ink-soft);
+  padding: 72px 20px;
+  font-size: 15px;
+}
+
+.queue {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Espresso-edged cards: thin warm-dark rule, crisp corners, faint depth */
+.card {
+  background: var(--card);
+  border: 1px solid var(--espresso-line);
+  border-radius: 4px;
+  padding: 20px 22px;
+  box-shadow: 0 1px 0 rgba(43,22,22,0.06);
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+.card:hover {
+  box-shadow: 0 1px 8px rgba(43,22,22,0.09);
+  border-color: var(--espresso);
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+/* Bucket tag: espresso chip, sky text — the signature pairing at chip scale */
+.bucket-tag {
+  background: var(--espresso);
+  color: var(--sky);
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  padding: 5px 11px;
+  border-radius: 3px;
+}
+
+.strike-badge {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 5px 11px;
+  border-radius: 3px;
+}
+.strike-badge.strike-0 { display: none; }
+.strike-badge.strike-1 { background: var(--strike1-bg); color: var(--strike1-fg); }
+.strike-badge.strike-2 { background: var(--strike2-bg); color: var(--strike2-fg); }
+.strike-badge.strike-3 { background: var(--strike3-bg); color: var(--strike3-fg); }
+
+.client-name {
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+}
+/* Meta line is data → Manrope, tabular, with a clear amount lead */
+.invoice-meta {
+  font-family: var(--mono);
+  font-weight: 500;
+  color: var(--ink-soft);
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  margin-top: 4px;
+  font-variant-numeric: tabular-nums;
+}
+
+.summary {
+  color: var(--ink-soft);
+  margin: 14px 0 16px;
+  font-size: 14.5px;
+  line-height: 1.55;
+  padding-left: 12px;
+  border-left: 2px solid var(--rule);
+}
+
+.message-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 7px;
+}
+.message-label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+}
+.recipient {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+.drafted-message {
+  width: 100%;
+  min-height: 92px;
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink);
+  background: var(--cream-sunk);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 11px 13px;
+  resize: vertical;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.drafted-message:focus {
+  outline: none;
+  border-color: var(--espresso-line);
+  background: #fff;
+}
+
+.card-actions {
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* Approve: espresso pill, sky label — signature pairing, button scale */
+.approve-btn {
+  background: var(--espresso);
+  color: var(--sky);
+  border: none;
+  padding: 9px 22px;
+  border-radius: 4px;
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.approve-btn:hover { background: var(--espresso-deep); }
+.approve-btn:focus-visible { outline: 2px solid var(--sky); outline-offset: 2px; }
+
+.approved-tag {
+  font-family: var(--mono);
+  color: var(--approved);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.card.is-approved {
+  opacity: 0.5;
+  border-color: var(--rule);
+}
+.card.is-approved .drafted-message,
+.card.is-approved .approve-btn {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
+
+@media (max-width: 600px) {
+  .nameplate { padding: 26px 20px; }
+  .nameplate-inner { flex-direction: column; align-items: flex-start; }
+  .tally-logo { height: 38px; }
+  main { padding: 24px 16px 40px; }
+}

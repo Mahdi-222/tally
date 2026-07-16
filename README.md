@@ -2,7 +2,7 @@
 
 A small internal tool that turns a CSV of unpaid invoices into a reviewed, ready-to-send follow-up queue.
 It classifies each invoice by real risk signals (never treating a first-time late payer the same as a
-repeat one), drafts the right message for that situation with Claude, and — when a human approves — opens
+repeat one), drafts the right message for that situation with Claude, and ( when a human approves ) opens
 a pre-filled email in the reviewer's own mail client, so a person sends it rather than a machine.
 
 *(To run it, see `START-HERE.md`.)*
@@ -32,7 +32,7 @@ a pre-filled email in the reviewer's own mail client, so a person sends it rathe
 
 ## Where the data comes from
 
-The tool doesn't track history — it reads it. The core fields (client, amount, due date, and the client's
+The tool doesn't track history it only reads it. The core fields (client, amount, due date, and the client's
 **email**) come straight from any billing system: that's the system that sent the invoice, so it already
 holds them. Because the email rides along in the same export, there's no separate contact list to keep in
 sync. The two behavioral signals (reschedule count, whether the client has responded before) assume the AR
@@ -42,9 +42,8 @@ system logs engagement, which mature setups do. The CSV stands in for that expor
 
 This is intentionally a CSV-in prototype. In a real deployment the ingestion step would connect directly to
 whatever system holds live invoice data, and the `mailto:` handoff would become a real sending integration
-(e.g. SendGrid, Resend, or the Gmail API) with a verified domain — keeping the same review-then-send flow.
-This demo focuses on the part that doesn't change regardless of the data source: the classification logic,
-the drafting, and the human review layer.
+(e.g. SendGrid, Resend, or the Gmail API) with a verified domain so we  keep the same process of reviewing and sending
+
 
 ## Tools used
 
